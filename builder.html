@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Create Your Personalized Book</title>
+  <link rel="stylesheet" href="globals.css">
+</head>
+<body>
+  <div class="container" style="padding:2rem 0;">
+    <h1>Create Your Storybook</h1>
+
+    <!-- Progress bar -->
+    <div class="progress-bar"><div class="progress" id="progress"></div></div>
+
+    <!-- Step 1: Photo Upload -->
+    <section id="step1">
+      <h2>1. Upload a Photo</h2>
+      <p>Use a bright, front-facing picture of your child.</p>
+      <input type="file" accept="image/*" id="photo-input">
+      <p id="photo-status">📷 Waiting for photo…</p>
+    </section>
+
+    <!-- Step 2: Details Form -->
+    <section id="step2" style="display:none;">
+      <h2>2. Tell Us About [Child’s Name]</h2>
+      <form id="details-form">
+        <label for="child-name">Child’s Name</label>
+        <input id="child-name" name="childName" type="text" required>
+        <label for="event">Age or Occasion</label>
+        <input id="event" name="event" type="text" placeholder="e.g. 1st Birthday" required>
+        <label for="favorite">Favorite Thing</label>
+        <input id="favorite" name="favorite" type="text" placeholder="e.g. Chocolate Cake" required>
+        <label for="dedication">Dedication Message</label>
+        <textarea id="dedication" name="dedication" rows="2"></textarea>
+        <button type="submit" class="btn btn-primary">Next: Preview</button>
+      </form>
+    </section>
+
+    <!-- Step 3: Preview -->
+    <section id="step3" style="display:none;">
+      <h2>3. Preview Your Book</h2>
+      <div id="preview-container" style="border:1px solid #ccc; border-radius:var(--radius); padding:1rem; min-height:300px;">
+        <!-- ChatGPT API + AI image preview scripts -->
+        <!-- TODO: Insert preview flipbook here via ChatGPT API integration -->
+      </div>
+      <button id="regenerate" class="btn btn-secondary" style="margin-top:1rem;">Regenerate Illustration</button>
+      <div style="margin:2rem 0;">
+        <button id="add-to-cart" class="btn btn-primary">Add Printed Board Book – $29.99</button>
+        <button id="save-later" class="btn btn-secondary">Save & Finish Later</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    let step = 1;
+    const progress = document.getElementById('progress');
+    function updateProgress() {
+      progress.style.width = (step-1)*50 + '%';
+    }
+    // photo upload handler
+    document.getElementById('photo-input').addEventListener('change', () => {
+      document.getElementById('photo-status').textContent = '✅ Photo received. Detecting features…';
+      step = 2; updateProgress();
+      document.getElementById('step1').style.display='none';
+      document.getElementById('step2').style.display='block';
+    });
+    // details form submit
+    document.getElementById('details-form').addEventListener('submit', e => {
+      e.preventDefault();
+      step = 3; updateProgress();
+      document.getElementById('step2').style.display='none';
+      document.getElementById('step3').style.display='block';
+      // TODO: call ChatGPT API to generate preview and render in preview-container
+    });
+    // SMS magic link on save later
+    document.getElementById('save-later').addEventListener('click', () => {
+      // TODO: integrate SMS API to send deep link
+      alert('A magic link has been sent to your phone!');
+    });
+  </script>
+</body>
+</html>
