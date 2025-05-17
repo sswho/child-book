@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Personalized Board Books – Landing</title>
+  <link rel="stylesheet" href="globals.css">
+</head>
+<body>
+  <header class="hero">
+    <!-- 15s silent autoplay video -->
+    <video src="hero-demo.mp4" autoplay muted loop playsinline></video>
+    <div class="container">
+      <h1 class="headline">
+        Watch your child’s face light up when they see <br><strong>themselves</strong> in a real storybook.
+      </h1>
+      <div class="trust-bar">
+        ★ 4.9/5 from <strong>7,842 parents</strong>
+      </div>
+      <div class="ticker">
+        📚 <span id="live-ticker">17</span> books created in the last 10 minutes
+      </div>
+      <div class="urgency-banner">
+        Order in the next <span id="countdown-landing" class="countdown">05:00</span> to meet today’s print cut-off
+      </div>
+      <div class="guarantee-badge">
+        Love-it-or-We-Reprint &amp; On-Time-or-It’s Free
+      </div>
+      <div style="margin:1.5rem 0;">
+        <button class="btn btn-primary" id="start-book-btn">Start My Book</button>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    // Live ticker simulation
+    setInterval(() => {
+      document.getElementById('live-ticker').textContent = Math.floor(Math.random()*20+5);
+    }, 10000);
+
+    // Countdown timer
+    let seconds = 300;
+    const cdEl = document.getElementById('countdown-landing');
+    setInterval(() => {
+      seconds--;
+      const m = String(Math.floor(seconds/60)).padStart(2,'0');
+      const s = String(seconds%60).padStart(2,'0');
+      cdEl.textContent = `${m}:${s}`;
+      if (seconds<=0) seconds=300;
+    },1000);
+
+    // Show modal on CTA
+    document.getElementById('start-book-btn')
+      .addEventListener('click', () => document.getElementById('lead-modal').classList.add('active'));
+  </script>
+
+  <!-- Lead-Capture Modal -->
+  <div id="lead-modal" class="modal">
+    <div class="modal-content">
+      <h2>Your FREE instant digital preview is almost ready</h2>
+      <p>Where should we send it?</p>
+      <form id="lead-form">
+        <label for="first-name">First Name</label>
+        <input id="first-name" name="firstName" type="text" required>
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" required>
+        <!-- Optional SMS capture -->
+        <label for="phone">SMS (optional)</label>
+        <input id="phone" name="phone" type="tel">
+        <button type="submit" class="btn btn-primary">Generate My Preview</button>
+      </form>
+      <!-- Social login placeholders -->
+      <div style="margin-top:1rem;">
+        <button class="btn btn-secondary">Continue with Apple</button>
+        <button class="btn btn-secondary">Continue with Google</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
