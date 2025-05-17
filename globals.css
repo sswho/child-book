@@ -1,4 +1,5 @@
-/* globals.css */
+/* global.css */
+
 /* 1. Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Nunito+Sans:wght@400;700&family=Poppins:wght@600&family=Pacifico&display=swap');
 
@@ -6,90 +7,88 @@
 :root {
   /* Colors */
   --color-anchor-navy: #1F335D;
-  --color-trust-teal: #3CB8C7;
-  --color-pastel-sky: #CDECFB;
-  --color-pastel-peach: #FFE5D2;
-  --color-playful-mint: #BEE7C5;
-  --color-coral-cta: #FF7043;
-  --color-ivory: #FFF9F6;
+  --color-trust-teal:  #3CB8C7;
+  --color-pastel-sky:  #CDECFB;
+  --color-pastel-peach:#FFE5D2;
+  --color-playful-mint:#BEE7C5;
+  --color-coral-cta:   #FF7043;
+  --color-ivory:       #FFF9F6;
 
   /* Typography */
   --font-display: 'Baloo 2', cursive;
   --font-heading: 'Poppins', sans-serif;
-  --font-body: 'Nunito Sans', system-ui, sans-serif;
-  --font-accent: 'Pacifico', cursive;
+  --font-body:    'Nunito Sans', system-ui, sans-serif;
+  --font-accent:  'Pacifico', cursive;
 
-  /* Spacing */
+  /* Spacing & radius */
   --spacer: 1rem;
   --radius: 0.75rem;
 }
 
-/* 3. Global Reset & Base Styles */
+/* 3. Global Reset & Base */
 *,
 *::before,
 *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
-
+html {
+  font-size: 100%; /* fallback for rem */
+}
 body {
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: 1rem;
   line-height: 1.5;
   color: var(--color-anchor-navy);
-  background-color: var(--color-ivory);
+  background: var(--color-ivory);
   min-height: 100vh;
 }
-
 h1, h2, h3, h4 {
-  margin-bottom: 0.5rem;
   font-family: var(--font-display);
   color: var(--color-anchor-navy);
+  margin-bottom: 0.5rem;
 }
-
 h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; }
 h3 { font-family: var(--font-heading); font-size: 1.5rem; }
-p {
-  margin-bottom: 1rem;
-}
+p { margin-bottom: 1rem; }
+a { color: var(--color-trust-teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-/* 4. Utility Classes */
+/* 4. Containers & Utility */
 .container {
+  width: 100%;
   max-width: 960px;
   margin: 0 auto;
   padding: 0 var(--spacer);
 }
-
 .btn {
   display: inline-block;
   font-family: var(--font-heading);
   font-weight: 600;
-  text-align: center;
   text-decoration: none;
   border: none;
   border-radius: var(--radius);
   padding: 0.75rem 1.5rem;
   cursor: pointer;
+  text-align: center;
 }
-
 .btn-primary {
-  background-color: var(--color-coral-cta);
+  background: var(--color-coral-cta);
   color: #fff;
-  transition: background-color 0.2s ease;
+  transition: background 0.2s ease;
 }
 .btn-primary:hover {
-  background-color: #E85E36;
+  background: #E85E36;
 }
-
 .btn-secondary {
   background: transparent;
   border: 2px solid var(--color-trust-teal);
   color: var(--color-trust-teal);
 }
 .btn-secondary:hover {
-  background-color: var(--color-trust-teal);
+  background: var(--color-trust-teal);
   color: #fff;
 }
 
@@ -97,80 +96,77 @@ p {
 .hero {
   position: relative;
   background: var(--color-pastel-sky);
-  padding: 4rem 0;
   text-align: center;
+  padding: 3rem 0;
 }
-.hero video, .hero img {
+.hero video,
+.hero img {
   width: 100%;
-  max-height: 400px;
+  max-height: 300px;
   object-fit: cover;
   border-radius: var(--radius);
 }
 .hero .headline {
-  margin-top: 1rem;
-  font-size: 2.5rem;
+  margin: 1rem 0;
+  font-size: 2rem;
   line-height: 1.2;
 }
-.hero .trust-bar,
-.hero .ticker,
-.hero .urgency-banner,
-.hero .guarantee-badge {
-  margin: 1rem 0;
+.trust-bar,
+.ticker,
+.urgency-banner,
+.guarantee-badge {
+  margin: 0.75rem 0;
 }
-
-/* 6. Trust Bar & Ticker & Badges */
 .trust-bar {
   font-size: 1rem;
-  color: var(--color-anchor-navy);
 }
 .ticker {
   font-family: var(--font-heading);
   font-size: 0.9rem;
-  color: var(--color-anchor-navy);
 }
 .urgency-banner {
-  background-color: var(--color-coral-cta);
-  color: #fff;
   display: inline-block;
+  background: var(--color-coral-cta);
+  color: #fff;
   padding: 0.5rem 1rem;
   border-radius: var(--radius);
   font-weight: bold;
 }
 .guarantee-badge {
   display: inline-block;
-  background-color: var(--color-playful-mint);
+  background: var(--color-playful-mint);
   color: var(--color-anchor-navy);
   padding: 0.5rem 1rem;
   border-radius: var(--radius);
   font-size: 0.9rem;
 }
 
-/* 7. Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(31, 51, 93, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacer);
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-.modal.active {
-  visibility: visible;
-  opacity: 1;
-}
-.modal .modal-content {
-  background: #fff;
-  padding: 2rem;
+/* 6. Countdown Timer */
+.countdown {
+  display: inline-block;
+  background: var(--color-pastel-peach);
+  color: var(--color-anchor-navy);
+  padding: 0.5rem 1rem;
   border-radius: var(--radius);
-  max-width: 400px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+}
+
+/* 7. Forms */
+form label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+form input,
+form select,
+form textarea {
   width: 100%;
+  padding: 0.75rem;
+  margin-bottom: var(--spacer);
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
 }
 
 /* 8. Progress Bar */
@@ -189,39 +185,18 @@ p {
   transition: width 0.3s ease;
 }
 
-/* 9. Countdown Timer */
-.countdown {
-  display: inline-block;
-  background: var(--color-pastel-peach);
-  color: var(--color-anchor-navy);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius);
-  font-family: var(--font-heading);
-  font-size: 1rem;
-}
+/* 9. Misc */
+a { color: var(--color-trust-teal); }
+a:hover { text-decoration: underline; }
 
-/* 10. Form Styles */
-form input,
-form select,
-form textarea {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: var(--radius);
-  font-family: var(--font-body);
+/* 10. Responsive Adjustments */
+@media(min-width: 768px) {
+  .container { padding: 0 2rem; }
+  .hero { padding: 4rem 0; }
+  .hero video { max-height: 450px; }
+  .hero .headline { font-size: 2.5rem; }
 }
-form label {
-  display: block;
-  margin-bottom: 0.25rem;
-  font-weight: 600;
-}
-
-/* 11. Misc */
-a {
-  color: var(--color-trust-teal);
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
+@media(min-width: 1024px) {
+  .hero { padding: 6rem 0; }
+  .hero .headline { font-size: 3rem; }
 }
