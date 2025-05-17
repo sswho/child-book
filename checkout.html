@@ -3,53 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Checkout – Personalized Board Book</title>
-  <link rel="stylesheet" href="globals.css">
+  <title>Checkout — Personal Storybooks</title>
+  <link rel="stylesheet" href="global.css">
 </head>
 <body>
   <div class="container" style="padding:2rem 0;">
     <h1>Secure Your Book</h1>
-    <div style="background:#FFF; border:1px solid var(--color-pastel-peach); border-radius:var(--radius); padding:1.5rem;">
+
+    <div style="background:#fff; border:1px solid var(--color-pastel-peach); border-radius:var(--radius); padding:1.5rem; margin-bottom:2rem;">
       <img src="preview-thumb.jpg" alt="Book Preview" style="width:100%; border-radius:var(--radius); margin-bottom:1rem;">
       <h2>Your Order</h2>
       <ul>
         <li>Printed Board Book – $29.99</li>
         <li><strong>FREE instant e-book</strong> ($6.99 value)</li>
       </ul>
-      <!-- Dual guarantee badge -->
       <div class="guarantee-badge">Love-it-or-We-Reprint &amp; On-Time-or-It’s Free</div>
-      <!-- Order bump -->
       <div style="margin-top:1rem;">
         <label>
           <input type="checkbox" checked>
           Gift box + Sticker sheet (+$7.99)
         </label>
       </div>
-      <!-- ETA widget -->
       <p style="margin-top:1rem;">Arrives by <strong>Jul 14</strong> to <em>Orlando, FL</em></p>
     </div>
 
-    <!-- One-click wallets -->
-    <div style="margin:2rem 0;">
-      <!-- Shopify / payment provider snippet -->
-      <!-- TODO: Insert Shopify Checkout Button Integration Here -->
-      <button class="btn btn-primary" style="width:100%">Pay &amp; Reserve Print Slot</button>
+    <!-- Payment Integration -->
+    <div style="margin-bottom:2rem;">
+      <!-- TODO: Embed Shopify/Stripe payment form here -->
+      <button class="btn btn-primary" style="width:100%;">Pay &amp; Reserve Print Slot</button>
     </div>
 
-    <!-- Countdown -->
-    <div class="countdown" id="countdown-checkout">12:00</div>
+    <div class="countdown" id="checkout-countdown">12:00</div>
   </div>
 
   <script>
-    // Simple countdown for cutoff (12 min)
-    let secs = 720;
-    const cd = document.getElementById('countdown-checkout');
+    let s = 720;
+    const cd = document.getElementById('checkout-countdown');
     setInterval(() => {
-      secs--;
-      const m = String(Math.floor(secs/60)).padStart(2,'0');
-      const s = String(secs%60).padStart(2,'0');
-      cd.textContent = `${m}:${s}`;
-      if (secs<=0) secs=720;
+      s--;
+      const m = String(Math.floor(s/60)).padStart(2,'0'),
+            sec = String(s%60).padStart(2,'0');
+      cd.textContent = `${m}:${sec}`;
+      if (s<=0) s=720;
     },1000);
   </script>
 </body>
