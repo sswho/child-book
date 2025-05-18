@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>StoryMagic — Personalized Children's Books</title>
+  <meta name="description" content="Create a personalised board-book where your child is the hero—AI-crafted, photo-perfect and delivered in 3-days with a double-happiness guarantee.">
+
+  <!-- performance pre-connect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="newglobals.css">
+  <!-- defer GSAP only for desktops -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header" id="header">
+    <div class="container flex items-center justify-between">
+      <a href="#" class="logo">Story<span>Magic</span></a>
+      <nav aria-label="Primary">
+        <button class="mobile-toggle" id="nav-toggle" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#" class="btn btn-primary start-book-btn">Start My Book</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-content two-col">
+        <div class="fade-in">
+          <h1 class="headline">
+            Watch your child’s face light up when they see <strong>themselves</strong> in a magical storybook
+          </h1>
+          <p class="subheadline">AI-powered personalised board books delivered in 3 days—create your free preview now.</p>
+
+          <div class="trust-bar mb-1">
+            <span class="stars">★★★★★</span>
+            <span>4.9/5 from <strong>7,842</strong> delighted parents</span>
+          </div>
+
+          <div class="activity-ticker mb-1" aria-live="polite">
+            <span>📚</span><span><span id="live-ticker">17</span> books created in the last 10 minutes</span>
+          </div>
+
+          <div class="urgency-timer mb-1">
+            <span>⏰</span><span>Order in the next <span id="countdown" class="countdown">05:00</span> to meet today’s print cut-off</span>
+          </div>
+
+          <div class="guarantees mb-2">
+            <span class="guarantee-badge"><span class="guarantee-icon">❤️</span>Love-it Free Guarantee</span>
+            <span class="guarantee-badge"><span class="guarantee-icon">🚚</span>3-Day Delivery</span>
+          </div>
+
+          <div class="cta-container">
+            <button type="button" class="btn btn-primary btn-large btn-pulse start-book-btn">Start My Free Preview</button>
+            <p class="cta-subtext">Instant preview — no card required</p>
+          </div>
+        </div>
+
+        <figure class="hero-video-container fade-in">
+          <img src="hero-placeholder.jpg" alt="Child thrilled by personalised book" class="hero-video" loading="lazy">
+          <figcaption class="visually-hidden">Preview video</figcaption>
+          <div class="video-overlay">
+            <button type="button" class="play-button" id="play-video" aria-label="Play video"><span class="play-icon"></span></button>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+      <div class="container">
+        <h2 class="section-title fade-in">What Makes StoryMagic Special</h2>
+        <div class="features-grid">
+          <article class="feature fade-in"><span class="feature-icon">🖼️</span><h3>Photo Perfect</h3><p>Advanced AI turns your child’s photo into charming illustrations.</p></article>
+          <article class="feature fade-in"><span class="feature-icon">✍️</span><h3>Tailored Tales</h3><p>Stories generated around your child’s interests for max engagement.</p></article>
+          <article class="feature fade-in"><span class="feature-icon">📦</span><h3>Board-Book Quality</h3><p>Thick pages and vibrant colours built to survive years of bedtime.</p></article>
+          <article class="feature fade-in"><span class="feature-icon">🔒</span><h3>Double Guarantee</h3><p>Love it or we reprint. Miss the delivery promise and it’s free.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+      <div class="container">
+        <h2 class="section-title fade-in">How It Works</h2>
+        <div class="steps">
+          <div class="step fade-in"><img src="step1.jpg" alt="" loading="lazy"><h4>1. Upload Photo</h4></div>
+          <div class="step fade-in"><img src="step2.jpg" alt="" loading="lazy"><h4>2. Customise</h4></div>
+          <div class="step fade-in"><img src="step3.jpg" alt="" loading="lazy"><h4>3. Instant Preview</h4></div>
+          <div class="step fade-in"><img src="step4.jpg" alt="" loading="lazy"><h4>4. 3-Day Delivery</h4></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="social-proof">
+      <div class="container">
+        <h2 class="section-title fade-in">Parents & Kids Love It</h2>
+        <div class="testimonials">
+          <!-- repeat .testimonial-card elements -->
+          <div class="testimonial-card fade-in"><p class="testimonial-content">“My daughter gasped when she saw herself in the book – now it’s our nightly ritual.”</p><div class="testimonial-author"><img src="avatar1.jpg" alt="" class="testimonial-avatar" loading="lazy"><div><p class="testimonial-name">Sarah K.</p><p class="testimonial-meta">Mom of Emma (4)</p></div></div></div>
+
+          <div class="testimonial-card fade-in"><p class="testimonial-content">“They captured my son’s dinosaur obsession perfectly. Quality is stellar.”</p><div class="testimonial-author"><img src="avatar2.jpg" alt="" class="testimonial-avatar" loading="lazy"><div><p class="testimonial-name">Michael T.</p><p class="testimonial-meta">Dad of Lucas (5)</p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2 class="section-title fade-in">FAQ</h2>
+        <ul class="faq-list">
+          <li class="faq-item fade-in"><button type="button" class="faq-question">What photo works best?</button><div class="faq-answer"><p>Clear, front-facing images without filters yield the best likeness.</p></div></li>
+          <li class="faq-item fade-in"><button type="button" class="faq-question">When will my book arrive?</button><div class="faq-answer"><p>Within 3 business days in the US; 5-7 internationally.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <h2 class="fade-in">Create a Book Your Child Will Treasure</h2>
+        <button type="button" class="btn btn-primary btn-large fade-in start-book-btn">Start My Free Preview</button>
+        <p class="cta-subtext fade-in" style="color:rgba(255,255,255,.8)">See your child in the story instantly — no commitment</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-column"><h4>StoryMagic</h4><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Blog</a></li></ul></div>
+      <div class="footer-column"><h4>Help</h4><ul class="footer-links"><li><a href="#">FAQs</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div class="footer-column"><h4>Legal</h4><ul class="footer-links"><li><a href="#">Terms</a></li><li><a href="#">Privacy</a></li></ul></div>
+    </div>
+    <div class="container footer-bottom">© 2025 StoryMagic Inc.</div>
+  </footer>
+
+  <!-- Lead Modal -->
+  <div class="modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+      <h3 id="modal-title" class="modal-title">Create Your Child’s Story</h3>
+      <form id="lead-form">
+        <div class="form-group"><label class="form-label" for="parent-name">Your Name</label><input class="form-input" id="parent-name" required></div>
+        <div class="form-group"><label class="form-label" for="email">Email</label><input class="form-input" id="email" type="email" required></div>
+        <button class="btn btn-primary btn-large" style="width:100%">Continue</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Confetti layer -->
+  <div class="confetti-container" id="confetti-container" aria-hidden="true"></div>
+
+  <!-- App JS -->
+  <script defer src="main.js"></script>
+</body>
+</html>
