@@ -3,34 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Thank You — Personal Storybooks</title>
-  <link rel="stylesheet" href="global.css">
+  <title>Thank You — StoryMagic</title>
+  <link rel="stylesheet" href="globals.css">
 </head>
 <body>
-  <div class="container" style="text-align:center; padding:4rem 0;">
-    <!-- TODO: Integrate confetti.js here -->
-    <h1>Thank You!</h1>
-    <p>Your personalized book is on its way.</p>
-
-    <div style="margin:2rem 0;">
-      <a href="#" class="btn btn-primary">Download Your FREE Digital Copy</a>
+  <!-- Navigation -->
+  <nav>
+    <div class="container flex items-center justify-between">
+      <div class="logo">Story<span>Magic</span></div>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="index.html#testimonials">Testimonials</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="#" class="start-book-btn">Start My Book</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <div style="margin:2rem 0;">
-      <p>Give $5, Get $5</p>
-      <a href="#" class="btn btn-secondary">Share &amp; Earn $5 Credit</a>
-    </div>
+  <!-- Thank You Section -->
+  <section style="padding:6rem 0; text-align:center;">
+    <div class="container">
+      <h1 class="section-title">Thank You!</h1>
+      <p>Your personalized board book is on its way. Meanwhile, grab your digital copy:</p>
 
-    <div style="margin:2rem 0;">
-      <p>Share your unboxing with <strong>#MyBoardBook</strong> &amp; enter to win a $100 gift card!</p>
-      <a href="#" class="btn btn-secondary">Share Now</a>
-    </div>
+      <div class="mt-2">
+        <button class="btn btn-primary btn-large">Download FREE e-Book</button>
+      </div>
 
-    <div style="margin:2rem 0; background:var(--color-pastel-peach); padding:1rem; border-radius:var(--radius);">
-      <h2>Special Offer</h2>
-      <p>Duplicate this book for Grandma at <strong>40% off</strong>—ships free.</p>
-      <a href="#" class="btn btn-primary">Add Grandma’s Copy</a>
+      <div class="mt-2">
+        <h3>Share & Earn</h3>
+        <button class="btn btn-secondary">Give $5, Get $5</button>
+      </div>
+
+      <div class="mt-2">
+        <h3>#MyBoardBook Contest</h3>
+        <p>Post your unboxing to win a $100 gift card!</p>
+        <button class="btn btn-secondary">Share Now</button>
+      </div>
+
+      <div class="mt-2" style="background:var(--light); padding:var(--spacing); border-radius:var(--radius); display:inline-block;">
+        <h4>Special Upsell</h4>
+        <p>Get a second copy for Grandma at <strong>40% off</strong>!</p>
+        <button class="btn btn-primary">Add Grandma’s Copy</button>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-column">
+        <h4>Company</h4>
+        <ul class="footer-links"><li><a href="#">About</a></li></ul>
+      </div>
+      <div class="footer-column">
+        <h4>Support</h4>
+        <ul class="footer-links"><li><a href="#">Help</a></li></ul>
+      </div>
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <ul class="footer-links"><li><a href="#">Privacy</a></li></ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      © 2025 StoryMagic. All rights reserved.
+    </div>
+  </footer>
 </body>
 </html>
