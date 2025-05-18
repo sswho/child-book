@@ -3,59 +3,250 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Home — Personal Storybooks</title>
-  <link rel="stylesheet" href="global.css">
+  <title>StoryMagic — Personalized Children's Books</title>
+  <link rel="stylesheet" href="globals.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
-  <header class="hero">
-    <!-- Hero Video/Image -->
-    <video src="hero-demo.mp4" autoplay muted loop playsinline></video>
 
-    <div class="container">
-      <h1 class="headline">
-        Watch your child’s face light up when they see<br>
-        <strong>themselves</strong><br>
-        in a real storybook.
-      </h1>
+  <!-- Navigation -->
+  <nav>
+    <div class="container flex items-center justify-between">
+      <div class="logo">Story<span>Magic</span></div>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#" class="start-book-btn">Start My Book</a></li>
+      </ul>
+    </div>
+  </nav>
 
-      <div class="trust-bar">
-        ★ 4.9/5 from <strong>7,842 parents</strong>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div>
+        <h1 class="headline">
+          Watch your child’s face light up when they see <strong>themselves</strong> in a real storybook
+        </h1>
+        <p class="subheadline">AI-powered personalized board books delivered in just 3 days—create your free preview now.</p>
+
+        <div class="trust-bar mb-1">
+          <div class="stars">★★★★★</div>
+          <div class="trust-text">4.9/5 from <strong>7,842</strong> parents</div>
+        </div>
+
+        <div class="activity-ticker mb-1">
+          <div>📚</div>
+          <div><span id="live-ticker" style="font-weight:800;color:var(--secondary)">17</span> books created in the last 10 minutes</div>
+        </div>
+
+        <div class="urgency-timer mb-1">
+          <div>⏰</div>
+          <div>Order in the next <span id="countdown" class="countdown">05:00</span> to meet today’s print cutoff</div>
+        </div>
+
+        <div class="guarantees mb-2">
+          <div class="guarantee-badge">
+            <div class="guarantee-icon">❤️</div>
+            <div class="guarantee-text">Love-it-or-We-Reprint</div>
+          </div>
+          <div class="guarantee-badge">
+            <div class="guarantee-icon">🚚</div>
+            <div class="guarantee-text">On-Time-or-It’s-Free</div>
+          </div>
+        </div>
+
+        <div class="cta-container">
+          <button class="btn btn-primary btn-large btn-pulse start-book-btn">Start My Book</button>
+          <p class="cta-subtext">Free instant preview—no credit card required</p>
+        </div>
       </div>
 
-      <div class="ticker">
-        📚 <span id="live-ticker">17</span> books created in the last 10 minutes
-      </div>
-
-      <div class="urgency-banner">
-        Order in the next <span id="countdown-landing" class="countdown">05:00</span><br>
-        to meet today’s print cut-off
-      </div>
-
-      <div class="guarantee-badge">
-        Love-it-or-We-Reprint &amp; On-Time-or-It’s Free
-      </div>
-
-      <div style="margin:1.5rem 0;">
-        <a href="lead-modal.html" class="btn btn-primary">Start My Book</a>
+      <div class="hero-video-container">
+        <img src="hero-placeholder.jpg" alt="Child with storybook" class="hero-video">
+        <div class="video-overlay">
+          <div class="play-button" id="play-video">
+            <div class="play-icon"></div>
+          </div>
+        </div>
       </div>
     </div>
-  </header>
+  </section>
 
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">What Makes Our Books Special</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">🖼️</div>
+          <h3>Photo Likeness</h3>
+          <p>We transform your child’s photo into charming storybook illustrations.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">✍️</div>
+          <h3>AI-Crafted Stories</h3>
+          <p>Each narrative is uniquely written by AI, personalized to your child’s interests.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📦</div>
+          <h3>Fast Delivery</h3>
+          <p>Printed on durable board pages and delivered within 3 days.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔒</div>
+          <h3>Risk-Free Guarantee</h3>
+          <p>Love it or we reprint it free. Arrives on time or you don’t pay.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <img src="step1.jpg" alt="Upload Photo">
+          <h4>1. Upload Photo</h4>
+        </div>
+        <div class="step">
+          <img src="step2.jpg" alt="Enter Details">
+          <h4>2. Enter Details</h4>
+        </div>
+        <div class="step">
+          <img src="step3.jpg" alt="Preview">
+          <h4>3. Instant Preview</h4>
+        </div>
+        <div class="step">
+          <img src="step4.jpg" alt="Delivery">
+          <h4>4. Receive Your Book</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="social-proof">
+    <div class="container">
+      <h2 class="section-title">Parents & Kids Love Their Books</h2>
+      <div class="testimonials">
+        <!-- testimonial cards as before -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq">
+    <div class="container faq-list">
+      <div class="faq-item">
+        <div class="faq-question">How do I upload a photo?</div>
+        <div class="faq-answer"><p>Simply click “Start My Book” and follow the wizard—no technical skills needed.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">When will I receive my book?</div>
+        <div class="faq-answer"><p>Most orders arrive within 3 business days after approval.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What if I’m not happy?</div>
+        <div class="faq-answer"><p>We offer a free reprint or refund if you don’t love it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Ready to See Your Child’s Story?</h2>
+      <button class="btn btn-primary btn-large start-book-btn">Create My Free Preview</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-column">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      © 2025 StoryMagic. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
   <script>
-    // Live ticker (demo)
+    // Live ticker
     setInterval(() => {
       document.getElementById('live-ticker').textContent = Math.floor(Math.random()*20+5);
     }, 10000);
-
-    // Countdown (5min loop)
-    let sec = 300;
+    // Countdown
+    let seconds = 300;
+    const cd = document.getElementById('countdown');
     setInterval(() => {
-      sec--;
-      const m = String(Math.floor(sec/60)).padStart(2,'0'),
-            s = String(sec % 60).padStart(2,'0');
-      document.getElementById('countdown-landing').textContent = `${m}:${s}`;
-      if (sec <= 0) sec = 300;
-    }, 1000);
+      seconds--;
+      const m = String(Math.floor(seconds/60)).padStart(2,'0'),
+            s = String(seconds%60).padStart(2,'0');
+      cd.textContent = `${m}:${s}`;
+      if(seconds<=0) seconds=300;
+    },1000);
+
+    // Intersection Observer for fade-in
+    document.querySelectorAll('.fade-in').forEach(el => {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if(e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      });
+      obs.observe(el);
+    });
+
+    // Video modal
+    const playBtn = document.getElementById('play-video');
+    playBtn.addEventListener('click', () => {
+      // TODO: Open full-screen video modal
+    });
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('active');
+      });
+    });
+
+    // Lead capture
+    document.querySelectorAll('.start-book-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        window.location.href = 'lead-modal.html';
+      });
+    });
   </script>
+
 </body>
 </html>
