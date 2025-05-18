@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="globals.css">
 </head>
 <body>
-
   <!-- Navigation (same as index) -->
   <nav>
     <div class="container flex items-center justify-between">
@@ -17,59 +16,59 @@
         <li><a href="index.html#how-it-works">How It Works</a></li>
         <li><a href="index.html#testimonials">Testimonials</a></li>
         <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="#" class="start-book-btn">Start My Book</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Lead Capture Modal Page -->
-  <section class="hero">
-    <div class="container text-center">
-      <h1 class="headline">Your Free Preview Is Almost Ready</h1>
-      <p class="subheadline">Just enter your name & email below and see a live demo of your child’s storybook.</p>
-
-      <form action="builder.html" method="get" class="lead-form" style="max-width:400px;margin:0 auto;">
+  <!-- Lead Capture Content -->
+  <section style="padding: 8rem 0; background: var(--light);">
+    <div class="container" style="max-width: 480px; margin: auto; background: #fff; border-radius: var(--radius); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+      <header style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 2rem; text-align: center; color: #fff; border-radius: var(--radius) var(--radius) 0 0;">
+        <h3>Almost There!</h3>
+        <p>Enter your info for a free, instant preview</p>
+      </header>
+      <form action="builder.html" method="get" class="lead-modal-body" style="padding: 2rem; display: grid; gap: 1.5rem;">
         <div class="form-group">
           <label for="firstName">First Name</label>
-          <input id="firstName" name="firstName" type="text" class="form-control" required>
+          <input id="firstName" name="firstName" type="text" required class="form-control">
         </div>
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input id="email" name="email" type="email" class="form-control" required>
+          <input id="email" name="email" type="email" required class="form-control">
         </div>
         <div class="form-group">
           <label for="phone">SMS (optional)</label>
           <input id="phone" name="phone" type="tel" class="form-control">
         </div>
         <button type="submit" class="btn btn-primary btn-large">Generate My Preview</button>
-        <p class="lead-privacy">No spam—just your preview link and occasional exclusive offers.</p>
+        <p class="lead-privacy">We respect your privacy—only your preview and occasional updates.</p>
       </form>
     </div>
   </section>
 
-  <!-- Footer (same as index) -->
+  <!-- Footer -->
   <footer>
     <div class="container footer-grid">
       <div class="footer-column">
         <h4>Company</h4>
         <ul class="footer-links">
-          <li><a href="#">About Us</a></li>
+          <li><a href="#">About</a></li>
           <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
         </ul>
       </div>
       <div class="footer-column">
         <h4>Support</h4>
         <ul class="footer-links">
           <li><a href="#">Help Center</a></li>
-          <li><a href="#">FAQs</a></li>
           <li><a href="#">Contact Us</a></li>
         </ul>
       </div>
       <div class="footer-column">
         <h4>Legal</h4>
         <ul class="footer-links">
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
         </ul>
       </div>
     </div>
@@ -77,21 +76,5 @@
       © 2025 StoryMagic. All rights reserved.
     </div>
   </footer>
-
-  <!-- Intersection Observer for fade-in -->
-  <script>
-    document.querySelectorAll('.fade-in').forEach(el => {
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            obs.unobserve(e.target);
-          }
-        });
-      });
-      obs.observe(el);
-    });
-  </script>
-
 </body>
 </html>
