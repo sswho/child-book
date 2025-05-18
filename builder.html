@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Build Your Book — StoryMagic</title>
+  <title>Create Your Storybook — StoryMagic</title>
   <link rel="stylesheet" href="globals.css">
 </head>
 <body>
-
   <!-- Navigation -->
   <nav>
     <div class="container flex items-center justify-between">
@@ -17,71 +16,54 @@
         <li><a href="index.html#how-it-works">How It Works</a></li>
         <li><a href="index.html#testimonials">Testimonials</a></li>
         <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="#" class="start-book-btn">Start My Book</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Builder Wizard -->
-  <section style="padding:6rem 0 3rem;">
-    <div class="container">
-      <h1 class="section-title text-center fade-in">Create Your Storybook</h1>
+  <section style="padding: 6rem 0;">
+    <div class="container" style="max-width: 600px; margin: auto;">
+      <h1 class="section-title text-center">Customize Your Book</h1>
 
       <!-- Progress Bar -->
-      <div class="progress-bar mb-2 fade-in">
-        <div class="progress" id="prog"></div>
-      </div>
+      <div class="progress-bar mb-2"><div class="progress" id="progress"></div></div>
 
-      <!-- Step 1 -->
-      <div id="step1" class="fade-in">
+      <!-- Step 1: Photo -->
+      <div id="step1">
         <h2>1. Upload a Photo</h2>
-        <p>Use a clear front-facing photo of your child.</p>
-        <input type="file" accept="image/*" id="photoInput" class="form-control">
-        <p id="photoStatus">📷 Waiting for photo…</p>
+        <p>Bright, front-facing shots work best!</p>
+        <input type="file" accept="image/*" id="photoInput" class="mb-1">
+        <p id="photoStatus">Waiting for photo…</p>
       </div>
 
-      <!-- Step 2 -->
-      <div id="step2" style="display:none;" class="fade-in">
-        <h2>2. Tell Us About Them</h2>
-        <form id="detailsForm" class="lead-form">
-          <div class="form-group">
-            <label for="childName">Child’s Name</label>
-            <input id="childName" name="childName" type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="event">Age or Occasion</label>
-            <input id="event" name="event" type="text" class="form-control" placeholder="e.g. 1st Birthday" required>
-          </div>
-          <div class="form-group">
-            <label for="favorite">Favorite Thing</label>
-            <input id="favorite" name="favorite" type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="dedication">Dedication Message</label>
-            <textarea id="dedication" name="dedication" rows="2" class="form-control"></textarea>
-          </div>
+      <!-- Step 2: Details -->
+      <div id="step2" style="display:none;">
+        <h2>2. Enter Details</h2>
+        <form id="detailsForm" class="mb-1">
+          <label for="childName">Child’s Name</label>
+          <input id="childName" name="childName" type="text" required class="form-control mb-1">
+          <label for="event">Occasion (e.g. 1st Birthday)</label>
+          <input id="event" name="event" type="text" required class="form-control mb-1">
+          <label for="favorite">Favorite Thing</label>
+          <input id="favorite" name="favorite" type="text" required class="form-control mb-1">
+          <label for="dedication">Dedication</label>
+          <textarea id="dedication" name="dedication" rows="2" class="form-control mb-2"></textarea>
           <button type="submit" class="btn btn-primary btn-large">Next: Preview</button>
         </form>
       </div>
 
-      <!-- Step 3 -->
-      <div id="step3" style="display:none;" class="fade-in">
+      <!-- Step 3: Preview -->
+      <div id="step3" style="display:none;">
         <h2>3. Preview Your Book</h2>
-        <div id="preview" style="border:1px solid rgba(0,0,0,0.1);padding:var(--spacing);border-radius:var(--radius);min-height:300px;">
-          <!-- TODO: ChatGPT flipbook preview embed -->
-        </div>
-        <button id="regen" class="btn btn-secondary btn-large mt-2">Regenerate Illustration</button>
-
-        <div class="mt-2 text-center">
-          <a href="checkout.html" class="btn btn-primary btn-large start-book-btn">Add Printed Board Book – $29.99</a>
-          <button id="saveLater" class="btn btn-secondary btn-large mt-1">Save & Finish Later</button>
+        <div id="preview" style="min-height:300px; border:1px solid #ccc; border-radius:var(--radius); padding:1rem;"></div>
+        <button id="regen" class="btn btn-secondary mb-2">Regenerate Illustration</button>
+        <div class="text-center">
+          <a href="checkout.html" class="btn btn-primary btn-large">Add Printed Book – $29.99</a>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Floating urgency & ticker -->
-  <div class="float-element float-activity fade-in">📚 <span id="floatTicker">17</span> books created now</div>
-  <div class="float-element float-countdown fade-in">⏰ <span id="floatCountdown">05:00</span></div>
 
   <!-- Footer -->
   <footer>
@@ -89,17 +71,53 @@
       <div class="footer-column">
         <h4>Company</h4>
         <ul class="footer-links">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
+          <li><a href="#">About</a></li>
         </ul>
       </div>
       <div class="footer-column">
         <h4>Support</h4>
         <ul class="footer-links">
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">FAQs</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Help</a></li>
         </ul>
       </div>
-      <
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      © 2025 StoryMagic. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Wizard Progress
+    let step = 1;
+    const prog = document.getElementById('progress');
+    function updateProgress() {
+      prog.style.width = ((step-1)/2)*100 + '%';
+    }
+    // Photo upload
+    document.getElementById('photoInput').addEventListener('change',()=>{
+      document.getElementById('photoStatus').textContent='Photo received!';
+      step=2; updateProgress();
+      document.getElementById('step1').style.display='none';
+      document.getElementById('step2').style.display='block';
+    });
+    // Details form
+    document.getElementById('detailsForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      step=3; updateProgress();
+      document.getElementById('step2').style.display='none';
+      document.getElementById('step3').style.display='block';
+      // TODO: Call ChatGPT API to render preview in #preview
+    });
+    // Regenerate
+    document.getElementById('regen').addEventListener('click',()=>{
+      // TODO: trigger re-generation via API
+    });
+  </script>
+</body>
+</html>
