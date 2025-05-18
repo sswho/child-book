@@ -2,218 +2,1537 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>StoryMagic — Personalized Children's Books</title>
-  <meta name="description" content="Create personalised board-books where your child is the hero—AI-crafted, photo-perfect and delivered in 3 days with a double-happiness guarantee.">
-
-  <!-- Fonts & CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StoryMagic — Personalized Children's Books Your Child Will Treasure</title>
+  <meta name="description" content="Create magical personalized storybooks featuring your child as the hero. AI-powered, delivered in 3 days with a happiness guarantee.">
+  
+  <!-- Preload critical assets -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <style>
+    :root {
+      --primary: #6C63FF;
+      --primary-dark: #5A52D9;
+      --secondary: #FF6B6B;
+      --secondary-dark: #E64C4C;
+      --accent: #FFD166;
+      --success: #06D6A0;
+      --background: #FFFFFF;
+      --background-alt: #F9F7FF;
+      --text: #2D3748;
+      --text-light: #718096;
+      --text-dark: #1A202C;
+      --border: #E2E8F0;
+      --shadow: rgba(0, 0, 0, 0.1);
+      
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+      
+      --transition: all 0.3s ease;
+      --max-width: 1200px;
+      --header-height: 80px;
+    }
+    
+    /* Base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    a:hover {
+      color: var(--primary-dark);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+    
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+    
+    h2 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    
+    h3 {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    ul, ol {
+      list-style-position: inside;
+    }
+    
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    section {
+      padding: 5rem 0;
+    }
+    
+    @media (max-width: 768px) {
+      section {
+        padding: 3rem 0;
+      }
+    }
+    
+    /* Typography */
+    .headline strong {
+      color: var(--secondary);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .headline strong::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--accent);
+      z-index: -1;
+      transform: rotate(-1deg);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .subheadline {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-light);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    
+    /* Layouts */
+    .flex {
+      display: flex;
+    }
+    
+    .items-center {
+      align-items: center;
+    }
+    
+    .justify-between {
+      justify-content: space-between;
+    }
+    
+    .grid {
+      display: grid;
+    }
+    
+    .two-columns {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .two-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Margins & Paddings */
+    .mb-1 {
+      margin-bottom: 1rem;
+    }
+    
+    .mb-2 {
+      margin-bottom: 2rem;
+    }
+    
+    .mb-3 {
+      margin-bottom: 3rem;
+    }
+    
+    /* Components */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      transition: var(--transition);
+      text-align: center;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      color: white;
+    }
+    
+    .btn-large {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+    }
+    
+    .btn-pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(108, 99, 255, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(108, 99, 255, 0);
+      }
+    }
+    
+    .card {
+      background: white;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      padding: 1.5rem;
+      transition: var(--transition);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Header & Navigation */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    
+    .site-header.scrolled {
+      box-shadow: var(--shadow-md);
+      height: 70px;
+    }
+    
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+    
+    .logo span {
+      color: var(--primary);
+    }
+    
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links li a {
+      color: var(--text);
+      font-weight: 500;
+      position: relative;
+    }
+    
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -5px;
+      transform: translateX(-50%) scaleX(0);
+      width: 100%;
+      height: 2px;
+      background-color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+    
+    .nav-links li a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-links li a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+    
+    .mobile-menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--text-dark);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0;
+        box-shadow: var(--shadow-md);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+      }
+      
+      .nav-links.active {
+        transform: translateY(0);
+      }
+      
+      .mobile-menu-toggle {
+        display: block;
+      }
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      padding-top: var(--header-height);
+      background: linear-gradient(135deg, rgba(249, 247, 255, 0.9) 0%, rgba(231, 227, 255, 0.9) 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(108, 99, 255, 0.15) 0%, rgba(108, 99, 255, 0) 70%);
+      transform: rotate(20deg);
+      z-index: 0;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    @media (max-width: 992px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+    
+    .hero-video-container {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transform: rotate(1deg);
+    }
+    
+    .hero-video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background-color: #eee;
+      border-radius: var(--radius-lg);
+      transform: rotate(-1deg) scale(1.02);
+      transition: transform 0.5s ease;
+    }
+    
+    .hero-video-container:hover .hero-video {
+      transform: rotate(0deg) scale(1.02);
+    }
+    
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    
+    .hero-video-container:hover .video-overlay {
+      opacity: 0.7;
+    }
+    
+    .play-button {
+      width: 80px;
+      height: 80px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.3s ease;
+    }
+    
+    .play-button:hover {
+      transform: scale(1.1);
+    }
+    
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-left: 25px solid var(--primary);
+      margin-left: 5px;
+    }
+    
+    /* Trust Elements */
+    .trust-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+    }
+    
+    .stars {
+      color: var(--accent);
+      letter-spacing: -2px;
+    }
+    
+    .cta-container {
+      margin-top: 2rem;
+    }
+    
+    .cta-subtext {
+      font-size: 0.875rem;
+      opacity: 0.8;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+    
+    .activity-ticker, .urgency-timer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--border);
+    }
+    
+    .activity-ticker div:first-child, .urgency-timer div:first-child {
+      font-size: 1.25rem;
+    }
+    
+    .countdown {
+      font-weight: 700;
+      color: var(--secondary);
+    }
+    
+    .guarantees {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .guarantee-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    /* Features */
+    .features {
+      background-color: var(--background);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      text-align: center;
+    }
+    
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      position: relative;
+    }
+    
+    .feature-icon::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: rgba(108, 99, 255, 0.1);
+      border-radius: 50%;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    /* How It Works */
+    .how-it-works {
+      background-color: var(--background-alt);
+    }
+    
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      position: relative;
+    }
+    
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 100px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: var(--primary);
+      z-index: 0;
+    }
+    
+    @media (max-width: 768px) {
+      .steps::before {
+        display: none;
+      }
+    }
+    
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .step img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 1.5rem;
+      background-color: #eee;
+      transition: transform 0.3s ease;
+    }
+    
+    .step:hover img {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .step h4 {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+    }
+    
+    /* Testimonials */
+    .social-proof {
+      background-color: var(--background);
+    }
+    
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .testimonial-card {
+      background: white;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      padding: 1.5rem;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 5rem;
+      color: rgba(108, 99, 255, 0.1);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    
+    .testimonial-content {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #eee;
+      object-fit: cover;
+    }
+    
+    .testimonial-name {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .testimonial-meta {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    
+    /* FAQ */
+    .faq {
+      background-color: var(--background-alt);
+    }
+    
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+    
+    .faq-question {
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+      height: 0;
+      overflow: hidden;
+      transition: height 0.3s ease;
+      padding-top: 0;
+    }
+    
+    .faq-item.active .faq-answer {
+      height: auto;
+      padding-top: 1rem;
+    }
+    
+    /* Final CTA */
+    .final-cta {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      text-align: center;
+      padding: 4rem 0;
+    }
+    
+    .final-cta h2 {
+      color: white;
+      margin-bottom: 2rem;
+    }
+    
+    .final-cta .btn {
+      background: white;
+      color: var(--primary);
+    }
+    
+    .final-cta .btn:hover {
+      background: var(--accent);
+      color: var(--text-dark);
+      transform: translateY(-2px) scale(1.05);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--text-dark);
+      color: white;
+      padding: 4rem 0 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-column h4 {
+      color: white;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .footer-column h4::after {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: var(--primary);
+      margin-top: 0.5rem;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+    
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: var(--radius-md);
+      max-width: 90%;
+      width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    
+    .modal.active .modal-content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-dark);
+    }
+    
+    .modal-title {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    
+    .form-input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+    }
+    
+    /* Confetti Animation */
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary);
+      opacity: 0;
+    }
+    
+    /* Mobile Optimizations */
+    @media (max-width: 768px) {
+      .hero-content {
+        padding-top: 2rem;
+      }
+      
+      .guarantees {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .testimonials {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero {
+        padding-top: calc(var(--header-height) + 2rem);
+      }
+      
+      .hero-content {
+        padding-top: 0;
+      }
+      
+      .subheadline {
+        font-size: 1rem;
+      }
+    }
+  </style>
+  
+  <!-- Preload fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="newglobals.css">
-
-  <!-- GSAP only on desktop -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
-
-  <!-- Header -->
-  <header class="site-header" id="header">
-    <div class="container flex items-center justify-between">
+  <header class="site-header">
+    <div class="container nav-wrapper">
       <a href="#" class="logo">Story<span>Magic</span></a>
-      <nav aria-label="Primary navigation">
-        <button class="mobile-toggle" id="nav-toggle" aria-label="Toggle menu">☰</button>
-        <ul class="nav-links" id="nav-links">
+      <nav>
+        <ul class="nav-links">
           <li><a href="#features">Features</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><button type="button" class="btn btn-primary start-book-btn">Start My Book</button></li>
+          <li><a href="#" class="btn btn-primary start-book-btn">Start My Book</a></li>
         </ul>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+          ☰
+        </button>
       </nav>
     </div>
   </header>
 
-  <!-- Main -->
-  <main id="main">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container two-col hero-content">
-        <div class="fade-in">
-          <h1 class="headline">
-            Watch your child’s face light up when they see <strong>themselves</strong> in a magical storybook
-          </h1>
-          <p class="subheadline">AI-powered personalised board books delivered in 3 days—create your free preview now.</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="fade-in">
+        <h1 class="headline">
+          Watch your child's face light up when they see <strong>themselves</strong> in a magical storybook
+        </h1>
+        <p class="subheadline">AI-powered personalized children's books featuring your child as the hero — delivered to your door in just 3 days</p>
 
-          <div class="trust-bar mb-1">
-            <span class="stars">★★★★★</span>
-            <span>4.9/5 from <strong>7,842</strong> delighted parents</span>
+        <div class="trust-bar mb-1">
+          <div class="stars">★★★★★</div>
+          <div class="trust-text">4.9/5 from <strong>7,842</strong> delighted parents</div>
+        </div>
+
+        <div class="activity-ticker mb-1">
+          <div>📚</div>
+          <div><span id="live-ticker" class="text-primary font-bold">19</span> books created in the last 10 minutes</div>
+        </div>
+
+        <div class="urgency-timer mb-1">
+          <div>⏰</div>
+          <div>Order in the next <span id="countdown" class="countdown">05:00</span> to meet today's print cutoff</div>
+        </div>
+
+        <div class="guarantees mb-2">
+          <div class="guarantee-badge">
+            <div class="guarantee-icon">❤️</div>
+            <div class="guarantee-text">Love-it-or-Free Guarantee</div>
           </div>
-
-          <div class="activity-ticker mb-1" aria-live="polite">
-            <span>📚</span><span><span id="live-ticker">17</span> books created in the last 10 minutes</span>
-          </div>
-
-          <div class="urgency-timer mb-1">
-            <span>⏰</span><span>Order in the next <span id="countdown" class="countdown">05:00</span> to meet print cut-off</span>
-          </div>
-
-          <div class="guarantees mb-2">
-            <span class="guarantee-badge"><span class="guarantee-icon">❤️</span>Love-it Free Guarantee</span>
-            <span class="guarantee-badge"><span class="guarantee-icon">🚚</span>3-Day Delivery Promise</span>
-          </div>
-
-          <div class="cta-container">
-            <button type="button" class="btn btn-primary btn-large btn-pulse start-book-btn">
-              Start My Free Preview
-            </button>
-            <p class="cta-subtext">Instant preview—no credit card required</p>
+          <div class="guarantee-badge">
+            <div class="guarantee-icon">🚚</div>
+            <div class="guarantee-text">3-Day Delivery Promise</div>
           </div>
         </div>
 
-        <figure class="hero-video-container fade-in">
-          <img src="hero-placeholder.jpg" alt="Child thrilled by personalised book" class="hero-video" loading="lazy">
-          <figcaption class="visually-hidden">Preview of StoryMagic book</figcaption>
-          <div class="video-overlay">
-            <button class="play-button" id="play-video" aria-label="Play hero video">
-              <div class="play-icon"></div>
-            </button>
-          </div>
-        </figure>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section id="features" class="features">
-      <div class="container">
-        <h2 class="section-title fade-in">What Makes StoryMagic Special</h2>
-        <div class="features-grid">
-          <article class="feature fade-in">
-            <span class="feature-icon">🖼️</span>
-            <h3>Photo Perfect</h3>
-            <p>AI transforms your child’s photo into charming, accurate illustrations.</p>
-          </article>
-          <article class="feature fade-in">
-            <span class="feature-icon">✍️</span>
-            <h3>Tailored Tales</h3>
-            <p>Stories generated around your child’s interests for max engagement.</p>
-          </article>
-          <article class="feature fade-in">
-            <span class="feature-icon">📦</span>
-            <h3>Premium Quality</h3>
-            <p>Board-book durability with vibrant colors that stand up to play.</p>
-          </article>
-          <article class="feature fade-in">
-            <span class="feature-icon">🔒</span>
-            <h3>Double Guarantee</h3>
-            <p>Love it or we reprint; miss the delivery promise and it’s free.</p>
-          </article>
+        <div class="cta-container">
+          <button class="btn btn-primary btn-large btn-pulse start-book-btn">Start My Free Preview</button>
+          <p class="cta-subtext">See your child in the story instantly — no credit card required</p>
         </div>
       </div>
-    </section>
 
-    <!-- How It Works -->
-    <section id="how-it-works" class="how-it-works">
-      <div class="container">
-        <h2 class="section-title fade-in">How It Works</h2>
-        <div class="steps">
-          <div class="step fade-in">
-            <img src="step1.jpg" alt="" loading="lazy"><h4>1. Upload Photo</h4>
-          </div>
-          <div class="step fade-in">
-            <img src="step2.jpg" alt="" loading="lazy"><h4>2. Customise</h4>
-          </div>
-          <div class="step fade-in">
-            <img src="step3.jpg" alt="" loading="lazy"><h4>3. Instant Preview</h4>
-          </div>
-          <div class="step fade-in">
-            <img src="step4.jpg" alt="" loading="lazy"><h4>4. Delivered in 3 Days</h4>
+      <div class="hero-video-container fade-in">
+        <img src="/api/placeholder/600/400" alt="Child excited about personalized book" class="hero-video">
+        <div class="video-overlay">
+          <div class="play-button" id="play-video">
+            <div class="play-icon"></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="social-proof">
-      <div class="container">
-        <h2 class="section-title fade-in">Families Love StoryMagic</h2>
-        <div class="testimonials">
-          <div class="testimonial-card fade-in">
-            <p class="testimonial-content">“My daughter gasped when she saw herself in the book—now it’s our nightly ritual.”</p>
-            <div class="testimonial-author">
-              <img src="avatar1.jpg" alt="" class="testimonial-avatar" loading="lazy">
-              <div><p class="testimonial-name">Sarah K.</p><p class="testimonial-meta">Mom of Emma (4)</p></div>
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title fade-in">What Makes StoryMagic Books Special</h2>
+      <div class="features-grid">
+        <div class="feature fade-in">
+          <div class="feature-icon">🖼️</div>
+          <h3>Photo-Perfect Likeness</h3>
+          <p>Our advanced AI transforms your child's photo into charming storybook illustrations they'll instantly recognize as themselves.</p>
+        </div>
+        <div class="feature fade-in">
+          <div class="feature-icon">✍️</div>
+          <h3>Custom AI-Crafted Stories</h3>
+          <p>Each narrative is uniquely written based on your child's interests, age, and personality—creating a truly one-of-a-kind reading experience.</p>
+        </div>
+        <div class="feature fade-in">
+          <div class="feature-icon">📦</div>
+          <h3>Premium Quality & Fast Delivery</h3>
+          <p>Printed on thick, durable board pages with vibrant colors that withstand years of bedtime stories—and delivered within just 3 days.</p>
+        </div>
+        <div class="feature fade-in">
+          <div class="feature-icon">🔒</div>
+          <h3>Double Happiness Guarantee</h3>
+          <p>If you or your child aren't completely delighted with your book, we'll reprint it with adjustments or refund your purchase, no questions asked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <h2 class="section-title fade-in">Creating Your Child's Story Is Simple</h2>
+      <div class="steps">
+        <div class="step fade-in">
+          <img src="/api/placeholder/180/180" alt="Upload your child's photo">
+          <h4>1. Upload Photo</h4>
+          <p>Submit a clear photo of your child's face—our AI handles the rest!</p>
+        </div>
+        <div class="step fade-in">
+          <img src="/api/placeholder/180/180" alt="Customize story details">
+          <h4>2. Customize Details</h4>
+          <p>Tell us your child's name, age, and interests to personalize their story.</p>
+        </div>
+        <div class="step fade-in">
+          <img src="/api/placeholder/180/180" alt="Preview your book instantly">
+          <h4>3. Instant Preview</h4>
+          <p>See a digital preview of your custom book before ordering.</p>
+        </div>
+        <div class="step fade-in">
+          <img src="/api/placeholder/180/180" alt="Book delivery">
+          <h4>4. Receive Your Book</h4>
+          <p>Your beautiful hardcover book arrives in 3 days, ready to delight!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="social-proof">
+    <div class="container">
+      <h2 class="section-title fade-in">Families Love Their StoryMagic Books</h2>
+      <div class="testimonials">
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-content">"My daughter literally gasped when she saw herself in the book! She insists on reading it every night, and now all her friends' parents are ordering their own."</p>
+          <div class="testimonial-author">
+            <img src="/api/placeholder/50/50" alt="Sarah K." class="testimonial-avatar">
+            <div>
+              <p class="testimonial-name">Sarah K.</p>
+              <p class="testimonial-meta">Mom of Emma, 4</p>
             </div>
           </div>
-          <div class="testimonial-card fade-in">
-            <p class="testimonial-content">“They captured my son’s dinosaur obsession perfectly. Quality is stellar.”</p>
-            <div class="testimonial-author">
-              <img src="avatar2.jpg" alt="" class="testimonial-avatar" loading="lazy">
-              <div><p class="testimonial-name">Michael T.</p><p class="testimonial-meta">Dad of Lucas (5)</p></div>
+        </div>
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-content">"I was amazed at how accurately they captured my son's likeness in the illustrations. The story about dinosaurs was perfect for him—it's like they knew exactly what he loves!"</p>
+          <div class="testimonial-author">
+            <img src="/api/placeholder/50/50" alt="Michael T." class="testimonial-avatar">
+            <div>
+              <p class="testimonial-name">Michael T.</p>
+              <p class="testimonial-meta">Dad of Lucas, 5</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-content">"I ordered books for all three of my kids and each one is uniquely tailored to their personalities. The quality is outstanding and they arrived so quickly!"</p>
+          <div class="testimonial-author">
+            <img src="/api/placeholder/50/50" alt="Jennifer R." class="testimonial-avatar">
+            <div>
+              <p class="testimonial-name">Jennifer R.</p>
+              <p class="testimonial-meta">Mom of 3</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="faq">
-      <div class="container">
-        <h2 class="section-title fade-in">FAQ</h2>
-        <ul class="faq-list">
-          <li class="faq-item fade-in">
-            <button type="button" class="faq-question">What photo works best?</button>
-            <div class="faq-answer"><p>Clear, front-facing images without filters yield the best likeness.</p></div>
-          </li>
-          <li class="faq-item fade-in">
-            <button type="button" class="faq-question">When will my book arrive?</button>
-            <div class="faq-answer"><p>Within 3 business days in the US; 5–7 internationally.</p></div>
-          </li>
-        </ul>
+  <!-- FAQ Section -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item fade-in">
+          <div class="faq-question">What kind of photo should I upload?</div>
+          <div class="faq-answer">
+            <p>For best results, upload a clear, well-lit photo showing your child's face from the front. While our AI works with most photos, close-up shots without sunglasses or costumes work best. Don't worry—we'll help you evaluate your photo during the process.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">How personalized are the stories?</div>
+          <div class="faq-answer">
+            <p>Each story is uniquely generated based on your child's name, interests, and age. You can choose from adventure themes like space exploration, undersea discovery, dinosaur adventures, fairy tales, and many more. The AI creates a completely original narrative featuring your child as the hero.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">What age range are these books appropriate for?</div>
+          <div class="faq-answer">
+            <p>Our books are designed for children ages 2-8, with content and complexity adjusted based on the age you specify. The durable board book format is perfect for toddlers, while the engaging stories captivate older children too.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">How quickly will I receive my book?</div>
+          <div class="faq-answer">
+            <p>After you approve your preview, most books arrive within 3 business days (US addresses). International shipping typically takes 5-7 business days. If your book doesn't arrive on time, we'll refund your shipping costs.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-question">What if I'm not happy with my book?</div>
+          <div class="faq-answer">
+            <p>We stand by our Double Happiness Guarantee. If you or your child aren't completely satisfied with your book for any reason, we'll either reprint it with adjustments or provide a full refund—your choice. Simply contact us within 30 days of receiving your book.</p>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Final CTA -->
-    <section class="final-cta">
-      <div class="container text-center">
-        <h2 class="fade-in">Create a Magical Book Your Child Will Treasure</h2>
-        <button type="button" class="btn btn-primary btn-large fade-in start-book-btn">Start My Free Preview</button>
-        <p class="cta-subtext fade-in" style="color:rgba(255,255,255,.8)">Instant glimpse—no commitment</p>
-      </div>
-    </section>
-  </main>
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2 class="fade-in">Create a Magical Book Your Child Will Treasure</h2>
+      <button class="btn btn-primary btn-large fade-in start-book-btn">Start My Free Preview</button>
+      <p class="cta-subtext fade-in" style="color: rgba(255,255,255,0.8);">See your child in the story instantly — no commitment required</p>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
     <div class="container footer-grid">
-      <div class="footer-column"><h4>StoryMagic</h4><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Blog</a></li></ul></div>
-      <div class="footer-column"><h4>Help</h4><ul class="footer-links"><li><a href="#">FAQs</a></li><li><a href="#">Contact</a></li></ul></div>
-      <div class="footer-column"><h4>Legal</h4><ul class="footer-links"><li><a href="#">Terms</a></li><li><a href="#">Privacy</a></li></ul></div>
+      <div class="footer-column">
+        <h4>StoryMagic</h4>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Help</h4>
+        <ul class="footer-links">
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Connect</h4>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Pinterest</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="container footer-bottom">© 2025 StoryMagic Inc.</div>
+    <div class="container footer-bottom">
+      © 2025 StoryMagic Inc. All rights reserved.
+    </div>
   </footer>
 
-  <!-- Lead Modal -->
-  <div class="modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <!-- Lead Capture Modal -->
+  <div class="modal" id="lead-modal">
     <div class="modal-content">
-      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
-      <h3 id="modal-title">Create Your Child’s Story</h3>
+      <button class="modal-close" id="modal-close">&times;</button>
+      <h3 class="modal-title">Create Your Child's Story</h3>
       <form id="lead-form">
-        <div class="form-group"><label for="parent-name">Your Name</label><input id="parent-name" class="form-input" required></div>
-        <div class="form-group"><label for="email">Email</label><input id="email" type="email" class="form-input" required></div>
-        <button class="btn btn-primary btn-large" style="width:100%">Continue</button>
+        <div class="form-group">
+          <label for="parent-name" class="form-label">Your Name</label>
+          <input type="text" id="parent-name" class="form-input" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" id="email" class="form-input" placeholder="Where should we send your preview?" required>
+        </div>
+        <div class="form-group">
+          <label for="child-name" class="form-label">Child's Name</label>
+          <input type="text" id="child-name" class="form-input" placeholder="Who will star in the story?" required>
+        </div>
+        <div class="form-group">
+          <label for="child-age" class="form-label">Child's Age</label>
+          <input type="number" id="child-age" class="form-input" min="1" max="12" placeholder="Age" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-large" style="width:100%;">Continue to Photo Upload</button>
       </form>
     </div>
   </div>
 
-  <!-- Confetti -->
-  <div class="confetti-container" id="confetti-container" aria-hidden="true"></div>
+  <!-- Confetti Container for Animation -->
+  <div class="confetti-container" id="confetti-container"></div>
 
-  <!-- Main JS -->
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
   <script>
-  // (Mobile toggle, ticker, countdown, modal, GSAP init…) 
-  // ensure IDs match exactly: nav-toggle, nav-links, live-ticker, countdown, lead-modal, modal-close.
+    // Mobile Navigation Toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileMenuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileMenuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileMenuToggle.textContent = '☰';
+      });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Live ticker with randomized activity
+    function updateLiveTicker() {
+      const ticker = document.getElementById('live-ticker');
+      const newValue = Math.floor(Math.random() * 15) + 12; // Random number between 12-26
+      
+      // Animate the number change
+      const currentValue = parseInt(ticker.textContent);
+      let startValue = currentValue;
+      const duration = 2000; // 2 seconds
+      const startTime = Date.now();
+      
+      function updateNumber() {
+        const currentTime = Date.now();
+        const elapsed = currentTime - startTime;
+        
+        if (elapsed < duration) {
+          const progress = elapsed / duration;
+          const currentNumber = Math.floor(currentValue + (newValue - currentValue) * progress);
+          ticker.textContent = currentNumber;
+          requestAnimationFrame(updateNumber);
+        } else {
+          ticker.textContent = newValue;
+        }
+      }
+      
+      updateNumber();
+    }
+    
+    // Initialize ticker and update every 10 seconds
+    updateLiveTicker();
+    setInterval(updateLiveTicker, 10000);
+    
+    // Countdown timer
+    function startCountdown() {
+      let seconds = 300; // 5 minutes
+      const countdownEl = document.getElementById('countdown');
+      
+      function updateTimer() {
+        if (seconds <= 0) {
+          seconds = 300; // Reset to 5 minutes
+        }
+        
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        
+        countdownEl.textContent = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+        seconds--;
+      }
+      
+      // Initial call and setup interval
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+    
+    startCountdown();
+    
+    // Scroll animations with GSAP
+    function initScrollAnimations() {
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Fade in animations
+      gsap.utils.toArray('.fade-in').forEach(element => {
+        gsap.fromTo(element, 
+          { opacity: 0, y: 30 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: element,
+              start: "top 85%",
+              toggleActions: "play none none none"
+            }
+          }
+        );
+      });
+      
+      // Hero image animation
+      gsap.fromTo('.hero-video-container', 
+        { opacity: 0, scale: 0.8, rotation: -5 },
+        { 
+          opacity: 1, 
+          scale: 1,
+          rotation: 1,
+          duration: 1.2,
+          delay: 0.3,
+          ease: "back.out(1.5)"
+        }
+      );
+    }
+    
+    // Initialize scroll animations
+    document.addEventListener('DOMContentLoaded', initScrollAnimations);
+    
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const answer = question.nextElementSibling;
+        
+        // Close other open FAQs
+        document.querySelectorAll('.faq-item.active').forEach(openItem => {
+          if (openItem !== item) {
+            openItem.classList.remove('active');
+            openItem.querySelector('.faq-answer').style.height = '0';
+          }
+        });
+        
+        // Toggle current FAQ
+        item.classList.toggle('active');
+        
+        if (item.classList.contains('active')) {
+          answer.style.height = answer.scrollHeight + 'px';
+        } else {
+          answer.style.height = '0';
+        }
+      });
+    });
+    
+    // Modal functionality
+    const modal = document.getElementById('lead-modal');
+    const closeBtn = document.getElementById('modal-close');
+    const startButtons = document.querySelectorAll('.start-book-btn');
+    
+    startButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      });
+    });
+    
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scrolling
+    });
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Form submission with confetti celebration
+    document.getElementById('lead-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Show success message or redirect
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      
+      // Trigger confetti celebration
+      createConfetti();
+      
+      // Here you would normally handle the form submission to your backend
+      console.log('Form submitted!');
+    });
+    
+    // Confetti animation function
+    function createConfetti() {
+      const container = document.getElementById('confetti-container');
+      const colors = ['#6C63FF', '#FF6B6B', '#FFD166', '#06D6A0'];
+      const shapes = ['circle', 'square', 'triangle'];
+      const confettiCount = 150;
+      
+      container.innerHTML = '';
+      
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        
+        // Random properties
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        const size = Math.random() * 10 + 5;
+        const left = Math.random() * 100;
+        
+        // Apply styles
+        confetti.style.backgroundColor = color;
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
+        confetti.style.left = `${left}%`;
+        confetti.style.top = '-20px';
+        
+        if (shape === 'circle') {
+          confetti.style.borderRadius = '50%';
+        }
+        if (shape === 'triangle') {
+          confetti.style.width = '0';
+          confetti.style.height = '0';
+          confetti.style.backgroundColor = 'transparent';
+          confetti.style.borderLeft = `${size/2}px solid transparent`;
+          confetti.style.borderRight = `${size/2}px solid transparent`;
+          confetti.style.borderBottom = `${size}px solid ${color}`;
+        }
+        
+        container.appendChild(confetti);
+        
+        // Animate each confetti piece
+        gsap.to(confetti, {
+          y: `${Math.random() * 100 + 600}`,
+          x: (Math.random() - 0.5) * 300,
+          rotation: Math.random() * 360,
+          opacity: 1,
+          duration: Math.random() * 3 + 3,
+          delay: Math.random() * 2,
+          ease: "power1.out",
+          onComplete: () => {
+            container.removeChild(confetti);
+          }
+        });
+      }
+    }
+    
+    // Video modal functionality
+    const playVideoBtn = document.getElementById('play-video');
+    
+    playVideoBtn.addEventListener('click', () => {
+      // In a real implementation, you would show a video player
+      alert('This would play a heartwarming video of children reacting to their personalized books!');
+    });
   </script>
 </body>
 </html>
