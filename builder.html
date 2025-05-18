@@ -1,91 +1,105 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Build Your Book</title>
-  <link rel="stylesheet" href="global.css">
+  <title>Build Your Book — StoryMagic</title>
+  <link rel="stylesheet" href="globals.css">
 </head>
 <body>
-  <div class="container" style="padding:2rem 0;">
-    <h1>Create Your Storybook</h1>
 
-    <!-- Progress -->
-    <div class="progress-bar">
-      <div class="progress" id="prog"></div>
+  <!-- Navigation -->
+  <nav>
+    <div class="container flex items-center justify-between">
+      <div class="logo">Story<span>Magic</span></div>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="index.html#testimonials">Testimonials</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <!-- Step 1 -->
-    <section id="step1">
-      <h2>1. Upload a Photo</h2>
-      <p>Use a bright, front-facing picture of your child.</p>
-      <input id="photoInput" type="file" accept="image/*">
-      <p id="photoStatus">📷 Waiting for photo…</p>
-    </section>
+  <!-- Builder Wizard -->
+  <section style="padding:6rem 0 3rem;">
+    <div class="container">
+      <h1 class="section-title text-center fade-in">Create Your Storybook</h1>
 
-    <!-- Step 2 -->
-    <section id="step2" style="display:none;">
-      <h2>2. Tell Us About Them</h2>
-      <form id="detailsForm">
-        <label for="childName">Child’s Name</label>
-        <input id="childName" name="childName" type="text" required>
-
-        <label for="event">Age or Occasion</label>
-        <input id="event" name="event" type="text" placeholder="e.g. 1st Birthday" required>
-
-        <label for="favorite">Favorite Thing</label>
-        <input id="favorite" name="favorite" type="text" placeholder="e.g. Chocolate Cake" required>
-
-        <label for="dedication">Dedication Message</label>
-        <textarea id="dedication" name="dedication" rows="2"></textarea>
-
-        <button type="submit" class="btn btn-primary">Next: Preview</button>
-      </form>
-    </section>
-
-    <!-- Step 3 -->
-    <section id="step3" style="display:none;">
-      <h2>3. Preview Your Book</h2>
-      <div id="preview" style="border:1px solid #ccc; border-radius:var(--radius); padding:1rem; min-height:300px;">
-        <!-- TODO: Embed ChatGPT API–powered flipbook preview here -->
+      <!-- Progress Bar -->
+      <div class="progress-bar mb-2 fade-in">
+        <div class="progress" id="prog"></div>
       </div>
-      <button id="regen" class="btn btn-secondary" style="margin-top:1rem;">Regenerate Illustration</button>
 
-      <div style="margin:2rem 0;">
-        <a href="checkout.html" class="btn btn-primary" style="margin-right:1rem;">Add Printed Board Book – $29.99</a>
-        <button id="saveLater" class="btn btn-secondary">Save & Finish Later</button>
+      <!-- Step 1 -->
+      <div id="step1" class="fade-in">
+        <h2>1. Upload a Photo</h2>
+        <p>Use a clear front-facing photo of your child.</p>
+        <input type="file" accept="image/*" id="photoInput" class="form-control">
+        <p id="photoStatus">📷 Waiting for photo…</p>
       </div>
-    </section>
-  </div>
 
-  <script>
-    let step = 1;
-    const prog = document.getElementById('prog');
-    function updateProg() {
-      prog.style.width = ((step-1)/2)*100 + '%';
-    }
+      <!-- Step 2 -->
+      <div id="step2" style="display:none;" class="fade-in">
+        <h2>2. Tell Us About Them</h2>
+        <form id="detailsForm" class="lead-form">
+          <div class="form-group">
+            <label for="childName">Child’s Name</label>
+            <input id="childName" name="childName" type="text" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="event">Age or Occasion</label>
+            <input id="event" name="event" type="text" class="form-control" placeholder="e.g. 1st Birthday" required>
+          </div>
+          <div class="form-group">
+            <label for="favorite">Favorite Thing</label>
+            <input id="favorite" name="favorite" type="text" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="dedication">Dedication Message</label>
+            <textarea id="dedication" name="dedication" rows="2" class="form-control"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-large">Next: Preview</button>
+        </form>
+      </div>
 
-    document.getElementById('photoInput')
-      .addEventListener('change', () => {
-        document.getElementById('photoStatus').textContent = '✅ Photo received. Detecting…';
-        step = 2; updateProg();
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
-      });
+      <!-- Step 3 -->
+      <div id="step3" style="display:none;" class="fade-in">
+        <h2>3. Preview Your Book</h2>
+        <div id="preview" style="border:1px solid rgba(0,0,0,0.1);padding:var(--spacing);border-radius:var(--radius);min-height:300px;">
+          <!-- TODO: ChatGPT flipbook preview embed -->
+        </div>
+        <button id="regen" class="btn btn-secondary btn-large mt-2">Regenerate Illustration</button>
 
-    document.getElementById('detailsForm')
-      .addEventListener('submit', e => {
-        e.preventDefault();
-        step = 3; updateProg();
-        document.getElementById('step2').style.display = 'none';
-        document.getElementById('step3').style.display = 'block';
-        // TODO: Call ChatGPT API to generate preview
-      });
+        <div class="mt-2 text-center">
+          <a href="checkout.html" class="btn btn-primary btn-large start-book-btn">Add Printed Board Book – $29.99</a>
+          <button id="saveLater" class="btn btn-secondary btn-large mt-1">Save & Finish Later</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    document.getElementById('saveLater').addEventListener('click', () => {
-      // TODO: Integrate SMS API to send deep link
-      alert('We sent a magic link to your phone!');
-    });
-  </script>
-</body>
-</html>
+  <!-- Floating urgency & ticker -->
+  <div class="float-element float-activity fade-in">📚 <span id="floatTicker">17</span> books created now</div>
+  <div class="float-element float-countdown fade-in">⏰ <span id="floatCountdown">05:00</span></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-column">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <
