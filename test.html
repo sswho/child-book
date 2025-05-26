@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Storybook Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .form-section, .story-section {
+            display: none;
+        }
+
+        .form-section.active, .story-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .generate-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .story-book {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        .story-title {
+            font-size: 2em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #ff6b6b;
+            padding-bottom: 15px;
+        }
+
+        .story-page {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #feca57;
+        }
+
+        .story-page h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .story-page p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .illustration-placeholder {
+            background: linear-gradient(45deg, #ffeaa7, #fdcb6e);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            color: #636e72;
+            font-style: italic;
+            border: 2px dashed #fdcb6e;
+        }
+
+        .purchase-section {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .purchase-btn {
+            background: white;
+            color: #00b894;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .purchase-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            background: #74b9ff;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #0984e3;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ AI Storybook Generator ✨</h1>
+            <p>Create magical, personalized stories for your little ones</p>
+        </div>
+
+        <div class="content">
+            <!-- Form Section -->
+            <div class="form-section active">
+                <form id="storybookForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="childName">Child's Name *</label>
+                            <input type="text" id="childName" name="childName" required placeholder="Enter your child's name">
+                        </div>
+                        <div class="form-group">
+                            <label for="childAge">Child's Age *</label>
+                            <select id="childAge" name="childAge" required>
+                                <option value="">Select age</option>
+                                <option value="2-3">2-3 years</option>
+                                <option value="4-5">4-5 years</option>
+                                <option value="6-7">6-7 years</option>
+                                <option value="8-10">8-10 years</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="occasion">Occasion *</label>
+                            <select id="occasion" name="occasion" required>
+                                <option value="">Select occasion</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="bedtime">Bedtime Story</option>
+                                <option value="christmas">Christmas</option>
+                                <option value="halloween">Halloween</option>
+                                <option value="first-day-school">First Day of School</option>
+                                <option value="moving-house">Moving to New House</option>
+                                <option value="new-sibling">New Baby Sibling</option>
+                                <option value="overcoming-fear">Overcoming a Fear</option>
+                                <option value="friendship">Making Friends</option>
+                                <option value="adventure">Adventure Story</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="theme">Story Theme</label>
+                            <select id="theme" name="theme">
+                                <option value="animals">Animals & Nature</option>
+                                <option value="fantasy">Fantasy & Magic</option>
+                                <option value="space">Space Adventure</option>
+                                <option value="underwater">Underwater World</option>
+                                <option value="superhero">Superhero</option>
+                                <option value="fairy-tale">Fairy Tale</option>
+                                <option value="real-life">Real Life Adventure</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interests">Child's Interests & Hobbies</label>
+                        <input type="text" id="interests" name="interests" placeholder="e.g., dinosaurs, princesses, cars, music, dancing">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="personality">Child's Personality Traits</label>
+                        <textarea id="personality" name="personality" placeholder="Tell us about your child's personality - are they shy, adventurous, funny, caring, curious?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lesson">What lesson or message would you like the story to convey?</label>
+                        <textarea id="lesson" name="lesson" placeholder="e.g., being brave, sharing with others, trying new things, being kind"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialDetails">Special Details to Include</label>
+                        <textarea id="specialDetails" name="specialDetails" placeholder="Any special details about your child, family, pets, or specific things you'd like mentioned in the story?"></textarea>
+                    </div>
+
+                    <button type="submit" class="generate-btn" id="generateBtn">
+                        Generate My Child's Story ✨
+                    </button>
+                </form>
+            </div>
+
+            <!-- Loading Section -->
+            <div class="loading" id="loadingSection">
+                <div class="loading-spinner"></div>
+                <p>Creating your magical story... ✨</p>
+            </div>
+
+            <!-- Story Section -->
+            <div class="story-section" id="storySection">
+                <button class="back-btn" onclick="goBack()">← Create Another Story</button>
+                <div class="story-book" id="storyBook">
+                    <!-- Story content will be generated here -->
+                </div>
+                
+                <div class="purchase-section">
+                    <h3>📚 Bring Your Story to Life!</h3>
+                    <p>Transform this personalized story into a beautiful hardcover board book</p>
+                    <button class="purchase-btn" onclick="purchaseBook('hardcover')">
+                        📖 Hardcover Book - $24.99
+                    </button>
+                    <button class="purchase-btn" onclick="purchaseBook('digital')">
+                        💻 Digital PDF - $9.99
+                    </button>
+                    <button class="purchase-btn" onclick="purchaseBook('both')">
+                        📚 Both Formats - $29.99
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Story templates and generation logic
+        const storyTemplates = {
+            birthday: {
+                title: "The Magical Birthday Adventure",
+                pages: [
+                    "Once upon a time, there was a wonderful child named {name} who was turning {age} years old!",
+                    "{name} woke up on their special birthday morning feeling excited and happy.",
+                    "But {name} discovered something magical was about to happen - a birthday adventure like no other!",
+                    "With their {personality} spirit, {name} embarked on a journey filled with {interests} and wonder.",
+                    "Along the way, {name} learned that {lesson}, making this birthday even more special.",
+                    "And so {name} had the most amazing birthday ever, surrounded by love and magic!"
+                ]
+            },
+            bedtime: {
+                title: "Sleepy Dreams with {name}",
+                pages: [
+                    "As the stars began to twinkle, little {name} was getting ready for bed.",
+                    "{name} loved bedtime because it meant time for magical dreams and cozy cuddles.",
+                    "Tonight, {name}'s dreams would take them on a gentle adventure to a land of {theme}.",
+                    "In this peaceful place, {name} met friendly creatures who shared stories about {interests}.",
+                    "The wise dream friends taught {name} that {lesson}, filling their heart with joy.",
+                    "And {name} drifted off to sleep with the sweetest dreams, feeling safe and loved."
+                ]
+            },
+            halloween: {
+                title: "{name}'s Spook-tacular Halloween",
+                pages: [
+                    "Halloween night had arrived, and {name} was ready for a not-too-scary adventure!",
+                    "Dressed up as their favorite {interests}, {name} felt brave and excited.",
+                    "While trick-or-treating, {name} discovered a friendly ghost who needed help.",
+                    "Using their {personality} nature, {name} helped solve the ghost's problem.",
+                    "The grateful ghost taught {name} that {lesson}, and they became the best of friends.",
+                    "Halloween became {name}'s favorite holiday, filled with friendship and fun surprises!"
+                ]
+            }
+        };
+
+        let currentStoryData = {};
+
+        document.getElementById('storybookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generateStory();
+        });
+
+        function generateStory() {
+            // Collect form data
+            const formData = new FormData(document.getElementById('storybookForm'));
+            const data = Object.fromEntries(formData.entries());
+            
+            currentStoryData = data;
+
+            // Show loading
+            document.querySelector('.form-section').classList.remove('active');
+            document.getElementById('loadingSection').style.display = 'block';
+
+            // Simulate AI generation delay
+            setTimeout(() => {
+                createStoryBook(data);
+                document.getElementById('loadingSection').style.display = 'none';
+                document.getElementById('storySection').classList.add('active');
+            }, 3000);
+        }
+
+        function createStoryBook(data) {
+            const occasion = data.occasion || 'bedtime';
+            const template = storyTemplates[occasion] || storyTemplates.bedtime;
+            
+            let storyHTML = `<div class="story-title">${template.title.replace('{name}', data.childName)}</div>`;
+            
+            template.pages.forEach((page, index) => {
+                let processedPage = page
+                    .replace(/{name}/g, data.childName)
+                    .replace(/{age}/g, data.childAge)
+                    .replace(/{personality}/g, data.personality || 'wonderful')
+                    .replace(/{interests}/g, data.interests || 'amazing things')
+                    .replace(/{lesson}/g, data.lesson || 'every day is special')
+                    .replace(/{theme}/g, data.theme || 'magical creatures');
+
+                storyHTML += `
+                    <div class="story-page">
+                        <h3>Page ${index + 1}</h3>
+                        <div class="illustration-placeholder">
+                            🎨 Beautiful illustration of ${data.childName} ${getIllustrationHint(page, data)}
+                        </div>
+                        <p>${processedPage}</p>
+                    </div>
+                `;
+            });
+
+            // Add personalized details
+            if (data.specialDetails) {
+                storyHTML += `
+                    <div class="story-page">
+                        <h3>Special Page</h3>
+                        <div class="illustration-placeholder">
+                            🎨 Illustration featuring ${data.specialDetails}
+                        </div>
+                        <p>And in this special part of the story, ${data.specialDetails} made everything even more wonderful for ${data.childName}!</p>
+                    </div>
+                `;
+            }
+
+            document.getElementById('storyBook').innerHTML = storyHTML;
+        }
+
+        function getIllustrationHint(page, data) {
+            if (page.includes('birthday')) return 'celebrating with balloons and cake';
+            if (page.includes('bedtime') || page.includes('sleep')) return 'in a cozy bedroom with stars';
+            if (page.includes('Halloween')) return 'in a fun Halloween costume';
+            if (page.includes('adventure')) return `exploring with ${data.interests}`;
+            return 'in a magical scene';
+        }
+
+        function purchaseBook(format) {
+            let price, item;
+            switch(format) {
+                case 'hardcover':
+                    price = '$24.99';
+                    item = 'Hardcover Board Book';
+                    break;
+                case 'digital':
+                    price = '$9.99';
+                    item = 'Digital PDF';
+                    break;
+                case 'both':
+                    price = '$29.99';
+                    item = 'Both Hardcover and Digital';
+                    break;
+            }
+            
+            alert(`🛒 Proceeding to checkout for:\n${item} - ${price}\n\nStory: "${currentStoryData.childName}'s Personalized Adventure"\n\nIn a real application, this would redirect to a secure payment processor like Stripe or PayPal.`);
+        }
+
+        function goBack() {
+            document.getElementById('storySection').classList.remove('active');
+            document.querySelector('.form-section').classList.add('active');
+            // Clear form
+            document.getElementById('storybookForm').reset();
+        }
+    </script>
+</body>
+</html>
